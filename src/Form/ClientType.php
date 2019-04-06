@@ -13,7 +13,7 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('city')
+            ->add('city',null,['data'=>$options['agency']->getName()])
             ->add('agency')
         ;
     }
