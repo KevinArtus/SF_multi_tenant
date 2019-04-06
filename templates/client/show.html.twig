@@ -19,6 +19,16 @@
                 <th>City</th>
                 <td>{{ client.city }}</td>
             </tr>
+            <tr>
+                <th>Contracts</th>
+                <td>
+                    {% for c in client.contracts %}
+                        <a href="{{ path('contract_edit',{id:c.id}) }}">
+                            {{ c.date | date('Y-m-d') }}
+                        </a>,
+                    {%  endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 

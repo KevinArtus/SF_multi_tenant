@@ -6,7 +6,9 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {{ context_agency() }}
+        {{ context_agency() }} | 
+        <a href="{{ path('client_index') }}">Client<a> | 
+        <a href="{{ path('contract_index') }}">Contracts<a>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
