@@ -48,6 +48,14 @@ class ContextStorage
         $this->agency = $agency;
 
         $this->requestContext->setParameter('agency_slug', $agency->getSlug());
+        
+        
+        $filters = $this->em->getFilters();
+        
+        $filters->enable('agency_filter');
+                
+        $filters->getFilter('agency_filter')->setParameter('agency_id', $agency->getId());
+        
 
         return $agency;
     }

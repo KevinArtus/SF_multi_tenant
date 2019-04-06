@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\AgencyRestrictableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
  */
-class Client
+class Client implements AgencyRestrictableInterface
 {
     /**
      * @ORM\Id()
@@ -29,13 +30,13 @@ class Client
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Agency")
+     * @ORM\ManyToOne(targetEntity="Agency")
      * @ORM\JoinColumn(nullable=false)
      */
     private $agency;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Contract", mappedBy="client", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Contract", mappedBy="client", orphanRemoval=true)
      */
     private $contracts;
 
@@ -79,16 +80,9 @@ class Client
         return $this;
     }
 
-    public function getAgency(): ?Agency
+    public function getAgency():Agency
     {
         return $this->agency;
-    }
-
-    public function setAgency(?Agency $agency): self
-    {
-        $this->agency = $agency;
-
-        return $this;
     }
 
     /**
