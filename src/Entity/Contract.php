@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
+use App\Model\AgencyRestrictableInterface;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContractRepository")
  */
-class Contract
+class Contract implements AgencyRestrictableInterface
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,25 +26,36 @@ class Contract
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="contracts")
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="contracts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Agency")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $agency;
+
+    public function __construct(Agency $agency)
+    {
+        $this->agency = $agency;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(DateTimeInterface $date): self
     {
         $this->date = $date;
-        
+
         return $this;
     }
 
@@ -51,8 +66,18 @@ class Contract
 
     public function setClient(?Client $client): self
     {
+        if($client && $client->getAgency()!==$this->getAgency()){
+            throw new Exception('Invalid Client provided');
+        }
+        
         $this->client = $client;
 
         return $this;
     }
+
+    public function getAgency():Agency
+    {
+        return $this->agency;
+    }
+
 }

@@ -15,18 +15,30 @@ App\Entity\Client:
       0: '@paris'
     name: <company()>
     city: <randomElement(['Paris','Rouen','Marseille'])>
-  client_{20..40}: 
+  client_{21..40}: 
     __construct:
       0: '@london'
     name: <company()>
     city: <randomElement(['London','Manchester','Birmingham'])>
-  client_{40..60}:
+  client_{41..60}:
     __construct:
       0: '@berlin' 
     name: <company()>
     city: <randomElement(['Berlin','Hamburg','Munich'])>
 
 App\Entity\Contract:
-    contracts_{0..200}:
+    contracts_{0..50}:
+      __construct:
+        0: '@paris'
       date: <datetime()>
-      client: '@client*'
+      client: '@client_<numberBetween(1,20)>'    
+    contracts_{50.100}:
+      __construct:
+        0: '@london'
+      date: <datetime()>
+      client: '@client_<numberBetween(21,40)>'    
+    contracts_{100..150}:
+      __construct:
+        0: '@berlin'
+      date: <datetime()>
+      client: '@client_<numberBetween(41,60)>'
