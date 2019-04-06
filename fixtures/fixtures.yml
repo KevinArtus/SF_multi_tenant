@@ -1,0 +1,32 @@
+App\Entity\Agency:
+  paris:
+    name: Paris
+    slug: paris-agency
+  london:
+    name: London
+    slug: london-agency
+  berlin:
+    name: Berlin
+    slug: berlin-agency
+
+App\Entity\Client:
+  client_{1..20}: 
+    __construct:
+      0: '@paris'
+    name: <company()>
+    city: <randomElement(['Paris','Rouen','Marseille'])>
+  client_{20..40}: 
+    __construct:
+      0: '@london'
+    name: <company()>
+    city: <randomElement(['London','Manchester','Birmingham'])>
+  client_{40..60}:
+    __construct:
+      0: '@berlin' 
+    name: <company()>
+    city: <randomElement(['Berlin','Hamburg','Munich'])>
+
+App\Entity\Contract:
+    contracts_{0..200}:
+      date: <datetime()>
+      client: '@client*'
