@@ -18,12 +18,12 @@ services:
             APACHE_RUN_USER: $USER
             APACHE_RUN_GROUP: $USER    
             PHP_MEMORY_LIMIT: 512M
-        tmpfs:
-            - /home/var/cache
         env_file:
             - .env
         tty: true
         working_dir: /home/app
+        tmpfs:
+            - /home/app/var
     database:
         image: mysql/mysql-server:5.7
         volumes:  
