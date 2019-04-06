@@ -29,9 +29,9 @@ class ClientController extends AbstractController
     /**
      * @Route("/new", name="client_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Agency $agency): Response
     {
-        $client = new Client();
+        $client = new Client($agency);
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
