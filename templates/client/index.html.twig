@@ -23,8 +23,8 @@
                 <td>{{ client.city }}</td>
                 <td>{{client.agency}}</td>
                 <td>
-                    {# <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a> #}
+                    <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
+                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    {# <a href="{{ path('client_new') }}">Create new</a> #}
+     <a href="{{ path('client_new') }}">Create new</a> 
 {% endblock %}
