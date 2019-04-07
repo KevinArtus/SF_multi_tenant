@@ -66,7 +66,7 @@ class Contract implements AgencyRestrictableInterface
 
     public function setClient(?Client $client): self
     {
-        if($client && $client->getAgency()!==$this->getAgency()){
+        if ($client && $client->getAgency()!==$this->getAgency()) {
             throw new Exception('Invalid Client provided');
         }
         
@@ -79,5 +79,4 @@ class Contract implements AgencyRestrictableInterface
     {
         return $this->agency;
     }
-
 }

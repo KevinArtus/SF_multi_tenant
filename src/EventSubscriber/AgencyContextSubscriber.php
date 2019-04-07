@@ -25,14 +25,12 @@ class AgencyContextSubscriber implements EventSubscriberInterface
     public function onKernelRequest(GetResponseEvent $event)
     {
         if (!$event->isMasterRequest()) {
-
             return;
         }
 
         $agencySlug = $event->getRequest()->get('agency_slug');
 
         if (!$agencySlug) {
-
             return;
         }
 
@@ -47,5 +45,4 @@ class AgencyContextSubscriber implements EventSubscriberInterface
             'kernel.request' => 'onKernelRequest',
         ];
     }
-
 }

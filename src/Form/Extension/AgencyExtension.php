@@ -28,8 +28,7 @@ class AgencyExtension extends AbstractTypeExtension
     
     public function configureOptions(OptionsResolver $resolver)
     {
-        if(!$this->contextStorage->getAgency()){
-            
+        if (!$this->contextStorage->getAgency()) {
             return;
         }
         
@@ -40,5 +39,4 @@ class AgencyExtension extends AbstractTypeExtension
     {
         return [FormType::class];
     }
-
 }

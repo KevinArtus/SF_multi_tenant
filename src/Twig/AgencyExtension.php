@@ -26,6 +26,4 @@ class AgencyExtension extends AbstractExtension
             new TwigFunction('context_agency', [$this->contextStorage, 'getAgency']),
         ];
     }
-    
-
 }

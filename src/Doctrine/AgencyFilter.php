@@ -18,11 +18,9 @@ class AgencyFilter extends SQLFilter
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
         if (!$targetEntity->reflClass->implementsInterface(AgencyRestrictableInterface::class)) {
-            
             return '';
         }
 
         return "$targetTableAlias.agency_id = " . $this->getParameter('agency_id');
     }
-
 }

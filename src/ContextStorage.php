@@ -64,5 +64,4 @@ class ContextStorage
     {
         return $this->agency;
     }
-
 }

@@ -80,7 +80,7 @@ class Client implements AgencyRestrictableInterface
         return $this;
     }
 
-    public function getAgency():Agency
+    public function getAgency(): Agency
     {
         return $this->agency;
     }

@@ -108,5 +108,4 @@ class ContractController extends AbstractController
 
         return $this->redirectToRoute('contract_index');
     }
-
 }
