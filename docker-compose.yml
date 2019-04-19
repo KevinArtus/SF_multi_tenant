@@ -23,7 +23,7 @@ services:
         tty: true
         working_dir: /home/app
         tmpfs:
-            - /home/app/var
+            - /var/app_var:exec,mode=777
     database:
         image: mysql/mysql-server:5.7
         volumes:  
