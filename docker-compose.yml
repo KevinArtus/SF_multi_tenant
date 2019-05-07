@@ -7,7 +7,7 @@ services:
     phpapache:     
         build: ./docker/phpapache
         ports:
-            - 8030:80
+            - 8040:80
         volumes:
             - .:/home/app    
             - /home/$USER:/home/$USER
@@ -23,7 +23,8 @@ services:
         tty: true
         working_dir: /home/app
         tmpfs:
-            - /var/app_var:exec,mode=777
+            - /var/app_var/cache:exec,mode=777
+            - /var/app_var/log:exec,mode=777
     database:
         image: mysql/mysql-server:5.7
         volumes:  
@@ -36,4 +37,4 @@ services:
         env_file:
             - .env
         ports:
-            - 8031:80
+            - 8041:80
