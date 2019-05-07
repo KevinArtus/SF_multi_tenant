@@ -30,15 +30,15 @@ App\Entity\Contract:
     contracts_{0..50}:
       __construct:
         0: '@paris'
-      date: <datetime()>
+      date: <datetimeBetween('-5 years','now')>
       client: '@client_<numberBetween(1,20)>'    
-    contracts_{50.100}:
+    contracts_{50..100}:
       __construct:
         0: '@london'
-      date: <datetime()>
+      date: <datetimeBetween('-5 years','now')>
       client: '@client_<numberBetween(21,40)>'    
     contracts_{100..150}:
       __construct:
         0: '@berlin'
-      date: <datetime()>
+      date: <datetimeBetween('-5 years','now')>
       client: '@client_<numberBetween(41,60)>'
