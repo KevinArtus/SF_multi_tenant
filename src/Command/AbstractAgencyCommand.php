@@ -35,23 +35,23 @@ abstract class AbstractAgencyCommand extends Command
         $this->contextStorage = $ct;
         $this->em = $em;
         parent::__construct($name);
-    }
 
-    protected function configure()
-    {
-        $this
-            ->addOption('agency', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of agency to iterate on (if no values all agencies)');
+        $this->addOption('agency', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'List of agency to iterate on (if no values all agencies)');
+   
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $agenciesSlugs = $input->getOption('agency');
 
+        //find all agencies if no options provided
         if (!$agenciesSlugs) {
             $agenciesSlugs = $this->em->createQuery('SELECT a.slug FROM ' . Agency::class . ' a')
                 ->getArrayResult();
             $agenciesSlugs = array_column($agenciesSlugs, 'slug');
         }
+
+
         foreach ($agenciesSlugs as $slug) {
 
             $agency = $this->contextStorage->activateContextBySlug($slug);
@@ -60,7 +60,7 @@ abstract class AbstractAgencyCommand extends Command
             $output->writeln("<info> ----- Execute for Agency $agency ----- </info>");
 
             $this->executeInAgency($agency, $input, $output);
-            
+
             $output->writeln('');
         }
     }

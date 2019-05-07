@@ -5,6 +5,7 @@ namespace App;
 use App\Entity\Agency;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RequestContext;
+use Doctrine\ORM\EntityNotFoundException;
 
 /**
  *
@@ -42,7 +43,7 @@ class ContextStorage
         $agency = $this->em->getRepository(Agency::class)->findOneBy(['slug' => $agencySlug]);
 
         if (!$agency) {
-            throw new HttpException(404, 'No agency found for slug ' . $agencySlug);
+            throw new EntityNotFoundException('No agency found for slug ' . $agencySlug);
         }
 
         $this->agency = $agency;
